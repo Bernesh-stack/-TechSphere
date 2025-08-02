@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
+import Events from './Pages/Events';
 
 function AppContent() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path='/Events' element={<Events/>} />
       </Routes>
     </div>
   );

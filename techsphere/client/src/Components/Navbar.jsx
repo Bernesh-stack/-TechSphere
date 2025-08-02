@@ -3,8 +3,15 @@ import styled from 'styled-components';
 import logo from '../assests/logo.svg'
 import Moon from '../assests/Moon.svg';
 import profile from '../assests/profile.svg'
-const Navbar = () => {
+import { useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 
+
+const Navbar = () => {
+  const location = useLocation();
+const navigate = useNavigate();
+const route = ['/']; 
+const underine = route.includes(location.pathname);
   return (
 <StyledNavbar>
   <LogoContainer>
@@ -14,7 +21,10 @@ const Navbar = () => {
   <Spacer />
 
   <StyledFlex>
-    <p>Events</p>
+    <Home isActive={location.pathname === '/'} onClick={() => navigate('/')}>Home</Home>
+ <Events isActive={location.pathname === '/Events'} onClick={() => navigate('/Events')}>
+  Events
+</Events>
     <Icon src={Moon} alt="moon" />
     <UserLogo>
       <img src={profile} alt="user" />
@@ -82,5 +92,65 @@ const UserLogo = styled.div`
     height: 24px;
   }
 `;
+const Events = styled.a`
+  cursor: pointer;
+  position: relative;
+  color: white;
+  padding-bottom: 4px;
 
+
+
+     &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease-in-out; 
+  }
+
+  ${({ isActive }) =>
+    isActive &&
+    `
+    &::after {
+      width: 100%;
+    }
+  }
+
+  `}
+`;
+
+
+const Home = styled.a`
+  cursor: pointer;
+  position: relative;
+  color: white;
+  padding-bottom: 4px;
+
+
+
+     &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease-in-out; 
+  }
+
+  ${({ isActive }) =>
+    isActive &&
+    `
+    &::after {
+      width: 100%;
+    }
+  }
+
+  `}
+
+`
 export default Navbar
