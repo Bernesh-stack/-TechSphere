@@ -1,8 +1,11 @@
 import React from 'react'
-
+import { FilterRow } from '../assests/Filter/Filter'
 const Events = () => {
   return (
-    <div>Events</div>
+    <div>
+      <FilterRow></FilterRow>
+
+    </div>
   )
 }
 
